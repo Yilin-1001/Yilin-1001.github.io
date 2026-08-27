@@ -136,19 +136,22 @@ footer a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 .hero {
   position: relative;
-  /* Keeps the decorative circle from spilling out. The eyebrow dot's glow
-     halo must stay inside this clip — see .hero .eyebrow below. */
-  overflow: clip;
+  /* No overflow clipping here on purpose: the eyebrow dot's glow halo pokes
+     past this box and must survive. The decorative circle lives in
+     .hero-decor, which does the clipping instead. */
   padding: clamp(6.5rem, 13vw, 11.5rem) 0 clamp(6rem, 11vw, 10rem);
   border-bottom: 1px solid var(--line);
 }
 
-/* The dot sits flush with the hero's clip edge, so its outward glow halo
-   gets shaved off. Nudge it inward; overflow-clip-margin would be the
-   elegant fix but Safari doesn't support it. */
-.hero .eyebrow { padding-left: .5rem; }
+/* Clip container for the decorative circle only. */
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-.hero::before {
+.hero-decor::before {
   position: absolute;
   top: clamp(3rem, 7vw, 6rem);
   right: clamp(-10rem, -2vw, -2rem);
@@ -428,7 +431,7 @@ footer p { margin: 0; }
   .site-header { min-height: 80px; }
   nav { gap: .85rem; font-size: .875rem; }
   .hero { padding-top: 5.5rem; }
-  .hero::before { top: 3rem; right: -7rem; width: 18rem; }
+  .hero-decor::before { top: 3rem; right: -7rem; width: 18rem; }
   h1 { font-size: clamp(3.25rem, 15vw, 4.8rem); }
   .section-heading, .project-card, .about-layout { grid-template-columns: 1fr; }
   .section-heading { gap: 0; }
