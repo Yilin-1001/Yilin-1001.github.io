@@ -136,14 +136,17 @@ footer a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 .hero {
   position: relative;
-  /* clip instead of hidden so overflow-clip-margin applies: the eyebrow
-     dot's glow halo pokes ~7px past this box and must survive the clip,
-     while the decorative circle still gets cut off. */
+  /* Keeps the decorative circle from spilling out. The eyebrow dot's glow
+     halo must stay inside this clip — see .hero .eyebrow below. */
   overflow: clip;
-  overflow-clip-margin: 10px;
   padding: clamp(6.5rem, 13vw, 11.5rem) 0 clamp(6rem, 11vw, 10rem);
   border-bottom: 1px solid var(--line);
 }
+
+/* The dot sits flush with the hero's clip edge, so its outward glow halo
+   gets shaved off. Nudge it inward; overflow-clip-margin would be the
+   elegant fix but Safari doesn't support it. */
+.hero .eyebrow { padding-left: .5rem; }
 
 .hero::before {
   position: absolute;
