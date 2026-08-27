@@ -8,12 +8,12 @@
   --muted: #647581;
   --line: #d3dde3;
   --line-strong: #afbec8;
-  --accent: #087ee1;
-  --accent-strong: #0069c3;
-  --accent-soft: #dff0ff;
+  --accent: #0a56a8;
+  --accent-strong: #08468c;
+  --accent-soft: #dfe9f5;
   --accent-contrast: #ffffff;
-  --grad-a: #087ee1;
-  --grad-b: #00b0dd;
+  --grad-a: #0a56a8;
+  --grad-b: #0f7fc2;
   --inverse: #101a23;
   --inverse-text: #edf5fa;
   --inverse-muted: #b6c7d1;
@@ -36,12 +36,12 @@
     --muted: #93a6b2;
     --line: #273945;
     --line-strong: #3b5260;
-    --accent: #5ab2ff;
-    --accent-strong: #8ac8ff;
-    --accent-soft: #12314a;
+    --accent: #4a90d9;
+    --accent-strong: #7ab5f0;
+    --accent-soft: #102a45;
     --accent-contrast: #08131d;
-    --grad-a: #5ab2ff;
-    --grad-b: #7ce9ff;
+    --grad-a: #4a90d9;
+    --grad-b: #2f9fd8;
     --inverse: #e8f1f5;
     --inverse-text: #10202a;
     --inverse-muted: #3d515e;
@@ -57,9 +57,7 @@ body {
   min-width: 320px;
   margin: 0;
   color: var(--ink);
-  background:
-    linear-gradient(to right, transparent calc(50% - .5px), color-mix(in srgb, var(--line) 45%, transparent) calc(50% - .5px), color-mix(in srgb, var(--line) 45%, transparent) calc(50% + .5px), transparent calc(50% + .5px)),
-    var(--bg);
+  background: var(--bg);
   font-family: var(--sans);
   font-size: 18px;
   line-height: 1.6;
@@ -443,7 +441,6 @@ footer p { margin: 0; }
 @keyframes scan { to { transform: rotate(326deg); } }
 
 @media (max-width: 720px) {
-  body { background-image: none; }
   .site-header { min-height: 80px; }
   nav { gap: .85rem; font-size: .875rem; }
   .hero { padding-top: 5.5rem; }
