@@ -148,9 +148,9 @@ footer a:hover::after { transform: scaleX(1); transform-origin: left; }
   width: min(39vw, 34rem);
   aspect-ratio: 1;
   content: "";
-  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
   border-radius: 50%;
-  box-shadow: 0 0 0 clamp(2.4rem, 5vw, 5rem) color-mix(in srgb, var(--accent) 5%, transparent), 0 0 0 clamp(5rem, 10vw, 10rem) color-mix(in srgb, var(--accent) 3%, transparent);
+  box-shadow: 0 0 0 clamp(2.4rem, 5vw, 5rem) color-mix(in srgb, var(--accent) 10%, transparent), 0 0 0 clamp(5rem, 10vw, 10rem) color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
 .eyebrow {
@@ -191,6 +191,10 @@ h1 em {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* background-clip: text clips at the padding box; the trailing glyph's
+     overhang (tight letter-spacing) would get cut — extend the box. */
+  padding-right: .08em;
+  margin-right: -.08em;
 }
 
 .hero-copy {
