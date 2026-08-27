@@ -31,29 +31,24 @@
     <main id="main-content">
       <section class="hero" id="top" aria-labelledby="hero-title">
         <p class="eyebrow"><span></span> Robotics portfolio · 2026</p>
-        <h1 id="hero-title">Turning sensor data into <em>safe motion.</em></h1>
+        <h1 id="hero-title">Robotics is changing the <em>real world</em>.</h1>
         <p class="hero-copy">
-          I build real-time robotics systems at the intersection of perception,
-          control, and human-supervised autonomy.
+          I work on perception, local planning, and operator tools for robots.
         </p>
         <div class="hero-actions">
           <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">↓</span></a>
           <a class="button button-quiet" href="https://github.com/Yilin-1001" target="_blank" rel="noreferrer">GitHub profile <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="signal-grid" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span><span></span>
-          <i></i><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
         </div>
       </section>
 
       <section class="work-section" id="work" aria-labelledby="work-title">
         <div class="section-heading">
           <p class="eyebrow"><span></span> Selected work</p>
-          <h2 id="work-title">Projects with a real-world feedback loop.</h2>
+          <h2 id="work-title">Projects I’ve built and tested.</h2>
         </div>
 
         <article class="project-card featured-project">
-          <div class="project-visual" aria-hidden="true">
+          <div class="project-media project-visual">
             <div class="radar-ring ring-one"></div>
             <div class="radar-ring ring-two"></div>
             <div class="radar-ring ring-three"></div>
@@ -65,14 +60,15 @@
           </div>
           <div class="project-content">
             <div class="project-meta"><span>01</span><span>Robotics · Real-time systems</span></div>
-            <h3>Real-Time Robot<br />Following System</h3>
+            <h3>Real-Time Robot Following<br />with Obstacle Avoidance.</h3>
             <p>
               A safety-bounded person-following system for a legged robot. It combines
-              UWB target localization, 3D LiDAR perception, APF-based local planning,
-              and a live web dashboard for supervised operation.
+              UWB target localization, 3D LiDAR perception, and two distinct
+              obstacle-avoidance modes: MPPI local planning and APF-based obstacle
+              avoidance. A live web dashboard supports supervised operation.
             </p>
             <ul class="tags" aria-label="Technologies used">
-              <li>ROS 2</li><li>UWB</li><li>3D LiDAR</li><li>APF</li><li>WebSocket</li>
+              <li>ROS 2</li><li>UWB</li><li>3D LiDAR</li><li>MPPI</li><li>APF</li><li>WebSocket</li>
             </ul>
             <a class="project-link" href="https://github.com/Yilin-1001/Robot_Follow_AO_Showcase" target="_blank" rel="noreferrer">
               View project <span aria-hidden="true">↗</span>
@@ -90,7 +86,7 @@
       <section class="about-section" id="about" aria-labelledby="about-title">
         <p class="eyebrow"><span></span> Focus areas</p>
         <div class="about-layout">
-          <h2 id="about-title">Engineering the bridge between physical systems and clear human control.</h2>
+          <h2 id="about-title">Perception, planning, and dependable control.</h2>
           <div class="about-copy">
             <p>I care about reliable systems that make their state visible: sensing what matters, making bounded decisions, and keeping people in the loop.</p>
             <ul>
@@ -105,7 +101,7 @@
 
       <section class="contact-section" aria-labelledby="contact-title">
         <p class="eyebrow"><span></span> Get in touch</p>
-        <h2 id="contact-title">Have a system worth<br />building?</h2>
+        <h2 id="contact-title">Open to robotics and systems work.</h2>
         <a class="contact-link" href="mailto:yilinjiang1001@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
       </section>
     </main>
@@ -114,5 +110,6 @@
       <p>© <span id="year">2026</span> Yilin</p>
       <a href="#top">Back to top ↑</a>
     </footer>
+    <script src="script.js" defer></script>
   </body>
 </html>
