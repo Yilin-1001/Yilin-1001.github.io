@@ -289,35 +289,6 @@ h2 {
 .project-visual::before { top: 12%; bottom: 12%; left: 50%; border-left: 1px solid rgb(161 216 255 / 24%); }
 .project-visual::after { right: 12%; bottom: 50%; left: 12%; border-top: 1px solid rgb(161 216 255 / 24%); }
 
-.project-visual p {
-  position: absolute;
-  z-index: 1;
-  top: 1.5rem;
-  left: 1.5rem;
-  display: inline-flex;
-  align-items: center;
-  gap: .55rem;
-  padding: .5rem .75rem;
-  border: 1px solid rgb(168 216 255 / 22%);
-  border-radius: var(--radius-sm);
-  color: #a8d8ff;
-  background: rgb(7 27 42 / 45%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font: 500 .75rem/1.2 var(--mono);
-  letter-spacing: .08em;
-}
-
-.project-visual p::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #7cc5ff;
-  box-shadow: 0 0 8px rgb(124 197 255 / 90%);
-  animation: cursor-blink 2.2s steps(2, start) infinite;
-}
-
 .radar-ring {
   position: absolute;
   top: 50%;
