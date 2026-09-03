@@ -67,4 +67,26 @@
 
     sections.forEach(function (el) { spyObserver.observe(el); });
   }
+
+  /* Demo drawer ---------------------------------------------------------- */
+
+  var demoDrawer = document.querySelector(".demo-drawer");
+  var demoVideos = document.querySelectorAll(".demo-drawer video");
+
+  if (demoDrawer) {
+    // Closing the drawer should never leave an invisible demo playing.
+    demoDrawer.addEventListener("toggle", function () {
+      if (demoDrawer.open) return;
+      demoVideos.forEach(function (video) { video.pause(); });
+    });
+  }
+
+  // Keep one soundtrack and one moving demo in focus at a time.
+  demoVideos.forEach(function (currentVideo) {
+    currentVideo.addEventListener("play", function () {
+      demoVideos.forEach(function (video) {
+        if (video !== currentVideo) video.pause();
+      });
+    });
+  });
 })();
