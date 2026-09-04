@@ -416,10 +416,12 @@ h2 {
   left: -42%;
   width: 40%;
   content: "";
-  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--inverse-accent) 12%, transparent), transparent);
+  background: linear-gradient(100deg, transparent, rgb(90 178 255 / 28%), transparent);
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--inverse-accent) 28%, transparent), transparent);
   pointer-events: none;
   transform: skewX(-16deg);
-  animation: demo-light-flow 4.4s ease-in-out infinite;
+  will-change: opacity, transform;
+  animation: demo-light-flow 3.2s linear infinite;
 }
 
 .demo-drawer summary::after {
@@ -428,12 +430,13 @@ h2 {
   top: 0;
   left: -32%;
   width: 30%;
-  height: 2px;
+  height: 3px;
   content: "";
   background: linear-gradient(90deg, transparent, var(--inverse-accent), transparent);
   box-shadow: 0 0 12px color-mix(in srgb, var(--inverse-accent) 55%, transparent);
   pointer-events: none;
-  animation: demo-line-flow 4.4s ease-in-out infinite;
+  will-change: opacity, transform;
+  animation: demo-line-flow 3.2s linear infinite;
 }
 
 .demo-drawer summary::-webkit-details-marker { display: none; }
@@ -607,17 +610,17 @@ footer p { margin: 0; }
 @keyframes cursor-blink { 50% { opacity: .18; } }
 @keyframes scan { to { transform: rotate(326deg); } }
 @keyframes demo-light-flow {
-  0%, 14% { opacity: 0; transform: translateX(0) skewX(-16deg); }
-  28% { opacity: 1; }
-  76% { opacity: .72; }
-  90%, 100% { opacity: 0; transform: translateX(380%) skewX(-16deg); }
+  0% { opacity: 0; transform: translateX(0) skewX(-16deg); }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(380%) skewX(-16deg); }
 }
 
 @keyframes demo-line-flow {
-  0%, 14% { opacity: 0; transform: translateX(0); }
-  28% { opacity: 1; }
-  76% { opacity: .9; }
-  90%, 100% { opacity: 0; transform: translateX(440%); }
+  0% { opacity: 0; transform: translateX(0); }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(440%); }
 }
 
 @media (max-width: 720px) {
