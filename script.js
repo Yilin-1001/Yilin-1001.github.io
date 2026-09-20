@@ -70,16 +70,16 @@
 
   /* Demo drawer ---------------------------------------------------------- */
 
-  var demoDrawer = document.querySelector(".demo-drawer");
-  var demoVideos = document.querySelectorAll(".demo-drawer video");
+  var demoDrawers = document.querySelectorAll(".demo-drawer");
+  var demoVideos = document.querySelectorAll(".project-card video");
 
-  if (demoDrawer) {
-    // Closing the drawer should never leave an invisible demo playing.
+  demoDrawers.forEach(function (demoDrawer) {
+    // Closing a drawer should never leave one of its hidden demos playing.
     demoDrawer.addEventListener("toggle", function () {
       if (demoDrawer.open) return;
-      demoVideos.forEach(function (video) { video.pause(); });
+      demoDrawer.querySelectorAll("video").forEach(function (video) { video.pause(); });
     });
-  }
+  });
 
   // Keep one soundtrack and one moving demo in focus at a time.
   demoVideos.forEach(function (currentVideo) {

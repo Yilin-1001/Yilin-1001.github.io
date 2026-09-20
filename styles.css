@@ -289,6 +289,8 @@ h2 {
   transform: translateY(-4px);
 }
 
+.project-card + .project-card { margin-top: clamp(2rem, 4vw, 3.5rem); }
+
 .project-media { position: relative; min-height: 460px; overflow: hidden; }
 /* Images, GIFs, and videos can be placed directly in .project-media later. */
 .project-media > img,
@@ -384,6 +386,92 @@ h2 {
   letter-spacing: .01em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* SmolVLA: same two-column card as 01, mirrored — text left, visual right. */
+.smolvla-project {
+  --inverse: var(--surface);
+  --inverse-text: var(--ink);
+  --inverse-muted: var(--ink-soft);
+  --inverse-accent: var(--accent);
+  grid-template-columns: 1.1fr minmax(300px, .9fr);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+.smolvla-instruction { max-width: 520px; padding-left: 1rem; margin: 0 0 .5rem; border-left: 2px solid var(--accent); }
+.smolvla-instruction span { color: var(--muted); font: .62rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+.smolvla-instruction p { margin: .45rem 0 0; font-size: 1rem; }
+
+/* Grasp alignment: the pen changes pose, the gripper re-orients to match. */
+.grasp-visual {
+  display: grid;
+  place-items: center;
+  background-color: #071b2a;
+  background-image: radial-gradient(circle at center, rgb(90 178 255 / 24%) 1px, transparent 1px), linear-gradient(145deg, rgb(20 89 143 / 30%), transparent 55%);
+  background-size: 16px 16px, auto;
+}
+
+.grasp-visual::before,
+.grasp-visual::after { position: absolute; content: ""; pointer-events: none; }
+.grasp-visual::before { top: 12%; bottom: 12%; left: 50%; border-left: 1px solid rgb(161 216 255 / 20%); }
+.grasp-visual::after { right: 12%; bottom: 50%; left: 12%; border-top: 1px solid rgb(161 216 255 / 20%); }
+
+.grasp-figure { position: relative; width: min(68%, 356px); aspect-ratio: 1; }
+
+.grasp-ring { position: absolute; border: 1px solid rgb(150 210 255 / 26%); border-radius: 50%; }
+.ring-outer { inset: 0; }
+.ring-inner { inset: 27%; border-style: dashed; border-color: rgb(150 210 255 / 20%); animation: grasp-scan 24s linear infinite; }
+
+.grasp-rotor,
+.grasp-claw { position: absolute; inset: 0; }
+.grasp-rotor { animation: grasp-pen-pose 13s cubic-bezier(.65, 0, .35, 1) infinite; }
+.grasp-claw { animation: grasp-claw-pose 13s cubic-bezier(.65, 0, .35, 1) infinite; }
+
+/* The pen: a plain shaft with one accent tip. */
+.grasp-pen { position: absolute; top: calc(50% - 3px); left: calc(50% - 65px); width: 130px; height: 6px; background: #eaf4ff; }
+.grasp-pen::after { position: absolute; content: ""; top: 0; left: 0; bottom: 0; width: 26px; background: #7cc5ff; }
+
+/* A two-finger gripper reaching in from one side. */
+.grasp-wrist { position: absolute; top: calc(50% - 20px); left: calc(50% + 78px); width: 3px; height: 40px; background: rgb(124 197 255 / 85%); }
+.grasp-finger { position: absolute; left: calc(50% + 2px); width: 79px; height: 4px; background: rgb(124 197 255 / 85%); animation: grasp-grip 13s cubic-bezier(.65, 0, .35, 1) infinite; }
+.finger-top { top: calc(50% - 18px); }
+.finger-bottom { top: calc(50% + 14px); --grip-dir: -1; }
+
+.smolvla-project .demo-drawer { background: var(--surface); }
+.smolvla-project .demo-drawer summary { background: var(--surface-raised); }
+.smolvla-project .demo-drawer summary::before,
+.smolvla-project .demo-drawer summary::after { display: none; }
+
+/* Three pen poses; the gripper follows a beat later, then closes on it. */
+@keyframes grasp-pen-pose {
+  0%, 26% { transform: rotate(0deg); }
+  33%, 59% { transform: rotate(64deg); }
+  66%, 92% { transform: rotate(-37deg); }
+  99%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes grasp-claw-pose {
+  0%, 30% { transform: rotate(0deg); }
+  37%, 63% { transform: rotate(64deg); }
+  70%, 96% { transform: rotate(-37deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes grasp-scan { to { transform: rotate(360deg); } }
+
+@keyframes grasp-grip {
+  0%, 8% { transform: translateY(0); }
+  16%, 24% { transform: translateY(calc(var(--grip-dir, 1) * 10px)); }
+  30%, 42% { transform: translateY(0); }
+  50%, 57% { transform: translateY(calc(var(--grip-dir, 1) * 10px)); }
+  63%, 74% { transform: translateY(0); }
+  82%, 89% { transform: translateY(calc(var(--grip-dir, 1) * 10px)); }
+  96%, 100% { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grasp-visual * { animation: none !important; }
 }
 
 .demo-drawer {
@@ -543,6 +631,10 @@ h2 {
   padding-top: 1.5rem;
 }
 
+.smolvla-demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.smolvla-demo-grid .demo-video-frame { aspect-ratio: 5 / 3; }
+
 .demo-item { min-width: 0; margin: 0; }
 
 .demo-video-frame {
@@ -634,12 +726,14 @@ footer p { margin: 0; }
   .section-heading .eyebrow { margin-bottom: .75rem; }
   .project-card:hover { transform: none; }
   .project-media { min-height: 330px; }
+  .smolvla-project .project-media { order: -1; }
   .ring-three { width: 310px; height: 310px; }
   .project-meta { margin-bottom: 3rem; }
   .project-meta span:last-child { text-align: right; }
   .demo-drawer summary { min-height: 104px; gap: 1rem; }
   .demo-group-heading { grid-template-columns: 1fr; gap: .75rem; }
   .demo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .smolvla-demo-grid { grid-template-columns: 1fr; }
   .future-project { grid-template-columns: 40px 1fr; gap: 1rem; }
   .future-project > p { grid-column: 2; }
   .plus { font-size: 2.3rem; }

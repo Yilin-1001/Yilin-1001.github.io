@@ -207,6 +207,139 @@
           </details>
         </article>
 
+        <article class="project-card smolvla-project">
+          <div class="project-content">
+            <div class="project-meta"><span>02</span><span>Robot manipulation · Vision-language-action</span></div>
+            <h3>Fine-Tuned SmolVLA<br />for Pen Placement.</h3>
+            <p>
+              A SmolVLA policy fine-tuned to pick up a black gel pen and place it
+              into an open box. It reads the camera images and a plain-language
+              instruction, then outputs the arm's motion directly — no scripted
+              trajectory, no hand-coded grasp pose. The pen starts at a different
+              angle every run, so the grasp is the policy's own decision.
+            </p>
+            <div class="smolvla-instruction">
+              <span>Task instruction</span>
+              <p>“Put the black pen into the box.”</p>
+            </div>
+            <ul class="tags" aria-label="Technologies used">
+              <li>SmolVLA</li><li>LeRobot</li><li>Fine-Tuning</li><li>Robot Manipulation</li>
+            </ul>
+          </div>
+
+          <div class="project-media grasp-visual" role="img" aria-label="Minimal animation: a pen settles at a new angle, a two-finger gripper rotates to align with it, closes on the shaft, then releases before the next pose.">
+            <div class="grasp-figure" aria-hidden="true">
+              <span class="grasp-ring ring-outer"></span>
+              <span class="grasp-ring ring-inner"></span>
+              <div class="grasp-rotor"><span class="grasp-pen"></span></div>
+              <div class="grasp-claw">
+                <span class="grasp-wrist"></span>
+                <span class="grasp-finger finger-top"></span>
+                <span class="grasp-finger finger-bottom"></span>
+              </div>
+            </div>
+          </div>
+
+          <details class="demo-drawer" id="smolvla-demos">
+            <summary>
+              <span class="demo-summary-copy">
+                <span class="demo-kicker">SmolVLA · 04 evaluation videos</span>
+                <strong>Watch the manipulation policy</strong>
+              </span>
+              <span class="demo-summary-meta">
+                <span class="demo-cta-label">
+                  <span class="when-closed">View videos</span>
+                  <span class="when-open">Close videos</span>
+                </span>
+                <span class="demo-toggle-icon" aria-hidden="true"></span>
+              </span>
+            </summary>
+
+            <div class="demo-drawer-content">
+              <p class="demo-intro">
+                Two evaluation runs with the pen left in a different pose. The
+                policy chooses a different grasp strategy for each one.
+              </p>
+
+              <section class="demo-group" aria-labelledby="smolvla-run-one-title">
+                <div class="demo-group-heading">
+                  <div>
+                    <span class="demo-group-index">01</span>
+                    <h4 id="smolvla-run-one-title">Pen upright, pointing away</h4>
+                  </div>
+                  <p>Strategy: approach along the pen axis and close on the barrel — no wrist rotation needed.</p>
+                </div>
+
+                <div class="demo-grid smolvla-demo-grid">
+                  <figure class="demo-item">
+                    <div class="demo-video-frame">
+                      <video controls playsinline preload="metadata" aria-label="Upright pen grasp, wrist camera">
+                        <source src="smolvla-pen-upright-wrist.mp4" type="video/mp4" />
+                        Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <figcaption>
+                      <span>Wrist · 00:20</span>
+                      <strong>Straight-on approach</strong>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="demo-item">
+                    <div class="demo-video-frame">
+                      <video controls playsinline preload="metadata" aria-label="Upright pen grasp, workspace camera">
+                        <source src="smolvla-pen-upright-workspace.mp4" type="video/mp4" />
+                        Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <figcaption>
+                      <span>Workspace · 00:20</span>
+                      <strong>Lift and drop into the box</strong>
+                    </figcaption>
+                  </figure>
+                </div>
+              </section>
+
+              <section class="demo-group" aria-labelledby="smolvla-run-two-title">
+                <div class="demo-group-heading">
+                  <div>
+                    <span class="demo-group-index">02</span>
+                    <h4 id="smolvla-run-two-title">Pen flat, lying across</h4>
+                  </div>
+                  <p>Strategy: rotate the wrist to line up with the pen, then close across its body.</p>
+                </div>
+
+                <div class="demo-grid smolvla-demo-grid">
+                  <figure class="demo-item">
+                    <div class="demo-video-frame">
+                      <video controls playsinline preload="metadata" aria-label="Flat pen grasp, wrist camera">
+                        <source src="smolvla-pen-flat-wrist.mp4" type="video/mp4" />
+                        Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <figcaption>
+                      <span>Wrist · 00:21</span>
+                      <strong>Aligned approach</strong>
+                    </figcaption>
+                  </figure>
+
+                  <figure class="demo-item">
+                    <div class="demo-video-frame">
+                      <video controls playsinline preload="metadata" aria-label="Flat pen grasp, workspace camera">
+                        <source src="smolvla-pen-flat-workspace.mp4" type="video/mp4" />
+                        Your browser does not support HTML video.
+                      </video>
+                    </div>
+                    <figcaption>
+                      <span>Workspace · 00:21</span>
+                      <strong>Lift and drop into the box</strong>
+                    </figcaption>
+                  </figure>
+                </div>
+              </section>
+            </div>
+          </details>
+        </article>
+
         <div class="future-project" aria-label="More projects coming soon">
           <span class="plus" aria-hidden="true">+</span>
           <div><p class="eyebrow"><span></span> In progress</p><h3>More projects are on the way.</h3></div>
