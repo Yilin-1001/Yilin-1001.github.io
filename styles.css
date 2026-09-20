@@ -1,13 +1,13 @@
 :root {
   color-scheme: light dark;
-  --bg: #f7f9fb;
+  --bg: #f7fafd;
   --surface: #ffffff;
-  --surface-raised: #f0f4f7;
+  --surface-raised: #eff4f9;
   --ink: #111c25;
   --ink-soft: #334653;
   --muted: #647581;
-  --line: #d3dde3;
-  --line-strong: #afbec8;
+  --line: #dde5ed;
+  --line-strong: #bccad6;
   --accent: #0a56a8;
   --accent-strong: #08468c;
   --accent-soft: #dfe9f5;
@@ -18,6 +18,15 @@
   --inverse-text: #edf5fa;
   --inverse-muted: #b6c7d1;
   --inverse-accent: #8ac8ff;
+  --viz-bg: #e6edf5;
+  --viz-glow: rgb(255 255 255 / 70%);
+  --viz-grid: rgb(22 63 105 / 17%);
+  --viz-line: rgb(22 63 105 / 26%);
+  --viz-line-soft: rgb(22 63 105 / 14%);
+  --viz-stroke: #2a72b8;
+  --viz-accent: #0a56a8;
+  --viz-solid: #16283a;
+  --viz-solid-ink: #e6eff7;
   --mono: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: "Manrope", Inter, ui-sans-serif, system-ui, sans-serif;
   --shadow: 0 16px 40px rgb(17 28 37 / 7%);
@@ -46,6 +55,15 @@
     --inverse-text: #10202a;
     --inverse-muted: #3d515e;
     --inverse-accent: #005fae;
+    --viz-bg: #071722;
+    --viz-glow: rgb(38 104 158 / 34%);
+    --viz-grid: rgb(120 190 255 / 19%);
+    --viz-line: rgb(150 210 255 / 42%);
+    --viz-line-soft: rgb(161 216 255 / 20%);
+    --viz-stroke: #a8d8ff;
+    --viz-accent: #7cc5ff;
+    --viz-solid: #e4f1fb;
+    --viz-solid-ink: #102a3d;
     --shadow: 0 16px 44px rgb(0 0 0 / 20%);
   }
 }
@@ -116,6 +134,7 @@ nav {
 
 nav a,
 footer a { position: relative; text-decoration: none; }
+
 
 nav a::after,
 footer a::after {
@@ -235,12 +254,10 @@ h1 em {
 }
 
 .button span,
-.project-link span,
-.contact-link span { transition: transform 180ms ease; }
+.project-link span { transition: transform 180ms ease; }
 .button:hover { transform: translateY(-2px); }
 .button:hover span,
-.project-link:hover span,
-.contact-link:hover span { transform: translate(3px, -2px); }
+.project-link:hover span { transform: translate(3px, -2px); }
 .button-primary {
   color: var(--accent-contrast);
   background: linear-gradient(120deg, var(--grad-a), var(--grad-b));
@@ -257,21 +274,25 @@ h1 em {
 .button-quiet:hover { border-color: var(--accent); background: var(--accent-soft); }
 
 .work-section,
-.about-section,
-.contact-section { padding-top: clamp(6.5rem, 11vw, 10rem); padding-bottom: clamp(6.5rem, 11vw, 10rem); }
+.about-section { padding-top: clamp(6.5rem, 11vw, 10rem); padding-bottom: clamp(6.5rem, 11vw, 10rem); }
 
 .section-heading { display: grid; grid-template-columns: .8fr 2fr; gap: 2rem; margin-bottom: 3rem; }
 
 h2 {
   margin-bottom: 0;
   font-size: clamp(2.75rem, 5vw, 5rem);
-  line-height: 1.01;
+  /* Descenders and ascenders collide on multi-line display headings below ~1.06. */
+  line-height: 1.07;
   letter-spacing: -.065em;
 }
 
 .section-heading h2 { max-width: 760px; }
 
 .project-card {
+  --inverse: var(--surface);
+  --inverse-text: var(--ink);
+  --inverse-muted: var(--ink-soft);
+  --inverse-accent: var(--accent);
   display: grid;
   overflow: hidden;
   grid-template-columns: minmax(300px, .9fr) 1.1fr;
@@ -280,14 +301,10 @@ h2 {
   color: var(--inverse-text);
   background: var(--inverse);
   box-shadow: var(--shadow);
-  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  transition: transform 200ms ease;
 }
 
-.project-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 22px 52px color-mix(in srgb, var(--accent) 14%, transparent);
-  transform: translateY(-4px);
-}
+.project-card:hover { transform: translateY(-4px); }
 
 .project-card + .project-card { margin-top: clamp(2rem, 4vw, 3.5rem); }
 
@@ -296,22 +313,29 @@ h2 {
 .project-media > img,
 .project-media > video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
 
-.project-visual {
-  background-color: #071b2a;
-  background-image: radial-gradient(circle at center, rgb(90 178 255 / 24%) 1px, transparent 1px), linear-gradient(145deg, rgb(20 89 143 / 30%), transparent 55%);
+.project-visual,
+.grasp-visual {
+  background-color: var(--viz-bg);
+  background-image:
+    radial-gradient(circle at center, var(--viz-grid) 1px, transparent 1px),
+    radial-gradient(62% 56% at 50% 47%, var(--viz-glow), transparent 72%);
   background-size: 16px 16px, auto;
 }
 
 .project-visual::before,
-.project-visual::after { position: absolute; content: ""; pointer-events: none; }
-.project-visual::before { top: 12%; bottom: 12%; left: 50%; border-left: 1px solid rgb(161 216 255 / 24%); }
-.project-visual::after { right: 12%; bottom: 50%; left: 12%; border-top: 1px solid rgb(161 216 255 / 24%); }
+.project-visual::after,
+.grasp-visual::before,
+.grasp-visual::after { position: absolute; content: ""; pointer-events: none; }
+.project-visual::before,
+.grasp-visual::before { top: 12%; bottom: 12%; left: 50%; border-left: 1px solid var(--viz-line-soft); }
+.project-visual::after,
+.grasp-visual::after { right: 12%; bottom: 50%; left: 12%; border-top: 1px solid var(--viz-line-soft); }
 
 .radar-ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  border: 1px solid rgb(150 210 255 / 50%);
+  border: 1px solid var(--viz-line);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
@@ -327,13 +351,13 @@ h2 {
   width: 50%;
   height: 1px;
   opacity: .9;
-  background: #a8d8ff;
+  background: var(--viz-stroke);
   transform: rotate(-34deg);
   transform-origin: left;
   animation: scan 6s linear infinite;
 }
 
-.target-point { position: absolute; width: 13px; height: 13px; border-radius: 50%; background: #7cc5ff; box-shadow: 0 0 0 6px rgb(124 197 255 / 18%); }
+.target-point { position: absolute; width: 13px; height: 13px; border-radius: 50%; background: var(--viz-accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--viz-accent) 18%, transparent); }
 .point-one { top: 28%; left: 68%; }
 .point-two { top: 72%; left: 24%; width: 8px; height: 8px; }
 
@@ -345,10 +369,10 @@ h2 {
   grid-template-columns: repeat(3, 9px);
   gap: 5px;
   padding: 9px;
-  background: #d9efff;
+  background: var(--viz-solid);
 }
 
-.robot-mark span { width: 9px; height: 9px; background: #102a3d; }
+.robot-mark span { width: 9px; height: 9px; background: var(--viz-solid-ink); }
 .robot-mark span:nth-child(3) { grid-column: 1 / -1; width: 37px; height: 6px; }
 
 .project-content { padding: clamp(2.25rem, 5vw, 5rem); }
@@ -376,8 +400,7 @@ h2 {
 .tags { display: flex; flex-wrap: wrap; gap: .55rem; padding: 0; margin: 2.25rem 0; list-style: none; }
 .tags li { padding: .5rem .65rem; border: 1px solid color-mix(in srgb, var(--inverse-muted) 40%, transparent); border-radius: 4px; color: var(--inverse-text); font: 500 .75rem/1.1 var(--mono); }
 
-.project-link,
-.contact-link {
+.project-link {
   display: inline-flex;
   align-items: center;
   gap: .8rem;
@@ -389,39 +412,20 @@ h2 {
 }
 
 /* SmolVLA: same two-column card as 01, mirrored — text left, visual right. */
-.smolvla-project {
-  --inverse: var(--surface);
-  --inverse-text: var(--ink);
-  --inverse-muted: var(--ink-soft);
-  --inverse-accent: var(--accent);
-  grid-template-columns: 1.1fr minmax(300px, .9fr);
-  color: var(--ink);
-  background: var(--surface);
-}
+.smolvla-project { grid-template-columns: 1.1fr minmax(300px, .9fr); }
 
 .smolvla-instruction { max-width: 520px; padding-left: 1rem; margin: 0 0 .5rem; border-left: 2px solid var(--accent); }
 .smolvla-instruction span { color: var(--muted); font: .62rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
 .smolvla-instruction p { margin: .45rem 0 0; font-size: 1rem; }
 
 /* Grasp alignment: the pen changes pose, the gripper re-orients to match. */
-.grasp-visual {
-  display: grid;
-  place-items: center;
-  background-color: #071b2a;
-  background-image: radial-gradient(circle at center, rgb(90 178 255 / 24%) 1px, transparent 1px), linear-gradient(145deg, rgb(20 89 143 / 30%), transparent 55%);
-  background-size: 16px 16px, auto;
-}
-
-.grasp-visual::before,
-.grasp-visual::after { position: absolute; content: ""; pointer-events: none; }
-.grasp-visual::before { top: 12%; bottom: 12%; left: 50%; border-left: 1px solid rgb(161 216 255 / 20%); }
-.grasp-visual::after { right: 12%; bottom: 50%; left: 12%; border-top: 1px solid rgb(161 216 255 / 20%); }
+.grasp-visual { display: grid; place-items: center; }
 
 .grasp-figure { position: relative; width: min(68%, 356px); aspect-ratio: 1; }
 
-.grasp-ring { position: absolute; border: 1px solid rgb(150 210 255 / 26%); border-radius: 50%; }
+.grasp-ring { position: absolute; border: 1px solid var(--viz-line); border-radius: 50%; }
 .ring-outer { inset: 0; }
-.ring-inner { inset: 27%; border-style: dashed; border-color: rgb(150 210 255 / 20%); animation: grasp-scan 24s linear infinite; }
+.ring-inner { inset: 27%; border-style: dashed; border-color: var(--viz-line-soft); animation: grasp-scan 24s linear infinite; }
 
 .grasp-rotor,
 .grasp-claw { position: absolute; inset: 0; }
@@ -429,19 +433,14 @@ h2 {
 .grasp-claw { animation: grasp-claw-pose 13s cubic-bezier(.65, 0, .35, 1) infinite; }
 
 /* The pen: a plain shaft with one accent tip. */
-.grasp-pen { position: absolute; top: calc(50% - 3px); left: calc(50% - 65px); width: 130px; height: 6px; background: #eaf4ff; }
-.grasp-pen::after { position: absolute; content: ""; top: 0; left: 0; bottom: 0; width: 26px; background: #7cc5ff; }
+.grasp-pen { position: absolute; top: calc(50% - 3px); left: calc(50% - 65px); width: 130px; height: 6px; background: var(--viz-solid); }
+.grasp-pen::after { position: absolute; content: ""; top: 0; left: 0; bottom: 0; width: 26px; background: var(--viz-accent); }
 
 /* A two-finger gripper reaching in from one side. */
-.grasp-wrist { position: absolute; top: calc(50% - 20px); left: calc(50% + 78px); width: 3px; height: 40px; background: rgb(124 197 255 / 85%); }
-.grasp-finger { position: absolute; left: calc(50% + 2px); width: 79px; height: 4px; background: rgb(124 197 255 / 85%); animation: grasp-grip 13s cubic-bezier(.65, 0, .35, 1) infinite; }
+.grasp-wrist { position: absolute; top: calc(50% - 20px); left: calc(50% + 78px); width: 3px; height: 40px; background: var(--viz-stroke); }
+.grasp-finger { position: absolute; left: calc(50% + 2px); width: 79px; height: 4px; background: var(--viz-stroke); animation: grasp-grip 13s cubic-bezier(.65, 0, .35, 1) infinite; }
 .finger-top { top: calc(50% - 18px); }
 .finger-bottom { top: calc(50% + 14px); --grip-dir: -1; }
-
-.smolvla-project .demo-drawer { background: var(--surface); }
-.smolvla-project .demo-drawer summary { background: var(--surface-raised); }
-.smolvla-project .demo-drawer summary::before,
-.smolvla-project .demo-drawer summary::after { display: none; }
 
 /* Three pen poses; the gripper follows a beat later, then closes on it. */
 @keyframes grasp-pen-pose {
@@ -525,6 +524,15 @@ h2 {
   pointer-events: none;
   will-change: opacity, transform;
   animation: demo-line-flow 3.2s linear infinite;
+}
+
+/* The travelling highlight only reads well on the dark theme. */
+.demo-drawer summary::before,
+.demo-drawer summary::after { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  .demo-drawer summary::before,
+  .demo-drawer summary::after { display: block; }
 }
 
 .demo-drawer summary::-webkit-details-marker { display: none; }
@@ -619,6 +627,8 @@ h2 {
   border-bottom: 1px solid color-mix(in srgb, var(--inverse-muted) 24%, transparent);
 }
 
+/* A group with no description line gets the full width for its title. */
+.demo-group-heading:not(:has(p)) { grid-template-columns: 1fr; }
 .demo-group-heading > div { display: flex; align-items: baseline; gap: 1rem; }
 .demo-group-heading h4 { margin: 0; color: var(--inverse-text); font-size: clamp(1.5rem, 2.5vw, 2.15rem); line-height: 1.15; letter-spacing: -.045em; }
 .demo-group-heading p { margin: 0; color: var(--inverse-muted); font-size: .9rem; line-height: 1.55; }
@@ -667,24 +677,12 @@ h2 {
 .plus { color: var(--accent); font: 2.7rem/1 var(--mono); }
 
 .about-section { border-bottom: 1px solid var(--line); }
-.about-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(3rem, 9vw, 10rem); }
-.about-layout h2 { max-width: 750px; }
-.about-copy p { color: var(--ink-soft); font-size: 1.1rem; line-height: 1.72; }
-.about-copy ul { padding: 0; margin: 2.25rem 0 0; list-style: none; border-top: 1px solid var(--line); }
+.about-layout { display: grid; grid-template-columns: 1.05fr .95fr; align-items: start; gap: clamp(2.5rem, 6vw, 6rem); }
+.about-layout h2 { max-width: 16ch; }
+.about-intro p { max-width: 54ch; margin: clamp(1.75rem, 3vw, 2.5rem) 0 0; color: var(--ink-soft); font-size: 1.1rem; line-height: 1.72; }
+.about-copy ul { padding: 0; margin: .65rem 0 0; list-style: none; border-top: 1px solid var(--line); }
 .about-copy li { display: grid; grid-template-columns: 2rem 1fr; gap: .5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); font-size: 1rem; line-height: 1.5; }
 .about-copy li span { color: var(--accent); font: 500 .75rem/1.8 var(--mono); }
-
-.contact-section {
-  margin-right: calc(-1 * var(--page-gutter));
-  margin-left: calc(-1 * var(--page-gutter));
-  padding-right: var(--page-gutter);
-  padding-left: var(--page-gutter);
-  color: var(--inverse-text);
-  background: var(--inverse);
-}
-
-.contact-section .eyebrow { color: var(--inverse-muted); }
-.contact-section h2 { margin-bottom: 2.5rem; }
 
 footer {
   display: flex;
@@ -742,7 +740,7 @@ footer p { margin: 0; }
 
 @media (max-width: 420px) {
   .site-header { align-items: center; }
-  nav { gap: .65rem; font-size: .8125rem; }
+  nav { flex-wrap: wrap; justify-content: flex-end; gap: .5rem .65rem; font-size: .8125rem; }
   .wordmark { font-size: 1.1rem; }
   .button { width: 100%; justify-content: space-between; }
   .project-content h3 br { display: none; }
@@ -791,8 +789,7 @@ nav a[aria-current="true"]::after { transform: scaleX(1); transform-origin: left
 
 /* Buttons press in. */
 .button-primary:active,
-.button-quiet:active,
-.contact-link:active { transform: translateY(0) scale(.98); }
+.button-quiet:active { transform: translateY(0) scale(.98); }
 
 /* Tags lift individually. */
 .tags li {

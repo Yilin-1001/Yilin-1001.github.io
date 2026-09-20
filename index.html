@@ -25,6 +25,7 @@
         <a href="#work">Work</a>
         <a href="#about">About</a>
         <a href="https://github.com/Yilin-1001" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="mailto:yilinjiang1001@gmail.com">Contact</a>
       </nav>
     </header>
 
@@ -75,7 +76,7 @@
             </a>
           </div>
 
-          <details class="demo-drawer">
+          <details class="demo-drawer" open>
             <summary>
               <span class="demo-summary-copy">
                 <span class="demo-kicker">RobotFollowing · 06 field demos</span>
@@ -240,7 +241,7 @@
             </div>
           </div>
 
-          <details class="demo-drawer" id="smolvla-demos">
+          <details class="demo-drawer" id="smolvla-demos" open>
             <summary>
               <span class="demo-summary-copy">
                 <span class="demo-kicker">SmolVLA · 04 evaluation videos</span>
@@ -267,7 +268,6 @@
                     <span class="demo-group-index">01</span>
                     <h4 id="smolvla-run-one-title">Pen upright, pointing away</h4>
                   </div>
-                  <p>Strategy: approach along the pen axis and close on the barrel — no wrist rotation needed.</p>
                 </div>
 
                 <div class="demo-grid smolvla-demo-grid">
@@ -305,7 +305,6 @@
                     <span class="demo-group-index">02</span>
                     <h4 id="smolvla-run-two-title">Pen flat, lying across</h4>
                   </div>
-                  <p>Strategy: rotate the wrist to line up with the pen, then close across its body.</p>
                 </div>
 
                 <div class="demo-grid smolvla-demo-grid">
@@ -350,23 +349,25 @@
       <section class="about-section" id="about" aria-labelledby="about-title">
         <p class="eyebrow"><span></span> Focus areas</p>
         <div class="about-layout">
-          <h2 id="about-title">Perception, planning, and dependable control.</h2>
+          <div class="about-intro">
+            <h2 id="about-title">Perception, planning, and learned control.</h2>
+            <p>
+              I care about reliable systems that make their state visible: sensing
+              what matters, making bounded decisions, and keeping people in the loop
+              — whether the motion comes from a solver or a learned policy. Open to
+              robotics and systems roles.
+            </p>
+          </div>
           <div class="about-copy">
-            <p>I care about reliable systems that make their state visible: sensing what matters, making bounded decisions, and keeping people in the loop.</p>
             <ul>
               <li><span>01</span> Robot perception &amp; sensor fusion</li>
               <li><span>02</span> Real-time control &amp; local planning</li>
-              <li><span>03</span> Safety-focused system design</li>
-              <li><span>04</span> Operator dashboards &amp; visualization</li>
+              <li><span>03</span> Learned manipulation policies (VLA)</li>
+              <li><span>04</span> Safety-focused system design</li>
+              <li><span>05</span> Operator dashboards &amp; visualization</li>
             </ul>
           </div>
         </div>
-      </section>
-
-      <section class="contact-section" aria-labelledby="contact-title">
-        <p class="eyebrow"><span></span> Get in touch</p>
-        <h2 id="contact-title">Open to robotics and systems work.</h2>
-        <a class="contact-link" href="mailto:yilinjiang1001@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a>
       </section>
     </main>
 

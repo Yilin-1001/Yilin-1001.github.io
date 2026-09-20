@@ -7,7 +7,7 @@
   /* Scroll-in reveal ------------------------------------------------------ */
 
   var reveals = document.querySelectorAll(
-    ".hero > *, .section-heading, .project-card, .future-project, .about-layout > *, .contact-section > *"
+    ".hero > *, .section-heading, .project-card, .future-project, .about-layout > *"
   );
 
   if (!reduceMotion && "IntersectionObserver" in window) {
